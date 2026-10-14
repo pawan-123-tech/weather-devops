@@ -17,27 +17,26 @@ stage('Check Project Files') {
     }
 }
 
-
-        stage('Build Docker Image') {
-            steps {
-                bat 'docker build -t weather-app .'
-            }
-        }
-
-        stage('Deploy Weather App') {
-            steps {
-                bat 'docker rm -f weather-container 2>NUL || exit /b 0'
-                bat 'docker run -d --name weather-container -p 5000:5000 weather-app'
-            }
-        }
-
-        stage('Verify Deployment') {
-            steps {
-                bat 'docker ps'
-                bat 'curl -f http://localhost:5000/health'
-            }
-        }
+stage('Build Docker Image') {
+    steps {
+        bat '"C:\\Users\\panka\\AppData\\Local\\Programs\\DockerDesktop\\resources\\bin\\docker.exe" build -t weather-app .'
     }
+}
+
+stage('Deploy Weather App') {
+    steps {
+        bat '"C:\\Users\\panka\\AppData\\Local\\Programs\\DockerDesktop\\resources\\bin\\docker.exe" rm -f weather-container 2>NUL || exit /b 0'
+        bat '"C:\\Users\\panka\\AppData\\Local\\Programs\\DockerDesktop\\resources\\bin\\docker.exe" run -d --name weather-container -p 5000:5000 weather-app'
+    }
+}
+
+stage('Verify Deployment') {
+    steps {
+        bat '"C:\\Users\\panka\\AppData\\Local\\Programs\\DockerDesktop\\resources\\bin\\docker.exe" ps'
+        bat 'curl -f http://localhost:5000/health'
+    }
+}
+
 
     post {
         success {
