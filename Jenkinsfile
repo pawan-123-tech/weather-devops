@@ -9,34 +9,33 @@ pipeline {
             }
         }
 
-  
-stage('Check Project Files') {
-    steps {
-        bat 'dir'
-        bat '"C:\\Users\\panka\\AppData\\Local\\Programs\\DockerDesktop\\resources\\bin\\docker.exe" --version'
-    }
-}
+        stage('Check Project Files') {
+            steps {
+                bat 'dir'
+                bat '"C:\\Users\\panka\\AppData\\Local\\Programs\\DockerDesktop\\resources\\bin\\docker.exe" --version'
+            }
+        }
 
-stage('Build Docker Image') {
-    steps {
-        bat '"C:\\Users\\panka\\AppData\\Local\\Programs\\DockerDesktop\\resources\\bin\\docker.exe" build -t weather-app .'
-    }
-}
+        stage('Build Docker Image') {
+            steps {
+                bat '"C:\\Users\\panka\\AppData\\Local\\Programs\\DockerDesktop\\resources\\bin\\docker.exe" build -t weather-app .'
+            }
+        }
 
-stage('Deploy Weather App') {
-    steps {
-        bat '"C:\\Users\\panka\\AppData\\Local\\Programs\\DockerDesktop\\resources\\bin\\docker.exe" rm -f weather-container 2>NUL || exit /b 0'
-        bat '"C:\\Users\\panka\\AppData\\Local\\Programs\\DockerDesktop\\resources\\bin\\docker.exe" run -d --name weather-container -p 5000:5000 weather-app'
-    }
-}
+        stage('Deploy Weather App') {
+            steps {
+                bat '"C:\\Users\\panka\\AppData\\Local\\Programs\\DockerDesktop\\resources\\bin\\docker.exe" rm -f weather-container 2>NUL'
+                bat '"C:\\Users\\panka\\AppData\\Local\\Programs\\DockerDesktop\\resources\\bin\\docker.exe" run -d --name weather-container -p 5000:5000 weather-app'
+            }
+        }
 
-stage('Verify Deployment') {
-    steps {
-        bat '"C:\\Users\\panka\\AppData\\Local\\Programs\\DockerDesktop\\resources\\bin\\docker.exe" ps'
-        bat 'curl -f http://localhost:5000/health'
+        stage('Verify Deployment') {
+            steps {
+                bat '"C:\\Users\\panka\\AppData\\Local\\Programs\\DockerDesktop\\resources\\bin\\docker.exe" ps'
+                bat 'curl -f http://localhost:5000/health'
+            }
+        }
     }
-}
-
 
     post {
         success {
