@@ -9,12 +9,12 @@ pipeline {
             }
         }
 
-        stage('Check Project Files') {
-            steps {
-                bat 'dir'
-                bat 'python --version'
-            }
-        }
+       stage('Check Project Files') {
+    steps {
+        bat 'dir'
+        bat 'docker --version'
+    }
+}
 
         stage('Build Docker Image') {
             steps {
