@@ -9,12 +9,14 @@ pipeline {
             }
         }
 
-       stage('Check Project Files') {
+  
+stage('Check Project Files') {
     steps {
         bat 'dir'
-        bat 'docker --version'
+        bat '"C:\\Users\\panka\\AppData\\Local\\Programs\\DockerDesktop\\resources\\bin\\docker.exe" --version'
     }
 }
+
 
         stage('Build Docker Image') {
             steps {
