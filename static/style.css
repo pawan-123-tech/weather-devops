@@ -118,3 +118,24 @@ footer small { color: #c6d5e8; font-size: 12px; }
     .temperature { font-size: 46px; }
     .card-top { align-items: flex-start; flex-direction: column; }
 }
+.pipeline-status {
+    text-align: center;
+    padding: 20px;
+    margin: 20px auto;
+    max-width: 900px;
+    background: #e8f4ff;
+    border: 2px solid #2196f3;
+    border-radius: 12px;
+    color: #123456;
+}
+
+.pipeline-status h1 {
+    margin-bottom: 10px;
+    font-size: 28px;
+}
+
+.pipeline-status p {
+    margin: 0;
+    font-size: 18px;
+    font-weight: bold;
+}
